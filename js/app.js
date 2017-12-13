@@ -1,8 +1,8 @@
 (function() {
 	var loadPage = function () {
-		getData();
+		getUserData();
 	};
-	var getData = function() {
+	var getUserData = function() {
 		$.ajax({
 			type: "POST",
 			url: 'https://parseapi.back4app.com/functions/usuario',
