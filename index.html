@@ -42,7 +42,6 @@
 	        </div>
        </div>
        <br>
-       <!-- elemento oculto -->
        <div class="row hidden" id="container-select-card">
 	      <h4 class="center">Asociar Tarjeta</h4>
 			<div class="input-field col s12 m4 offset-m4">
@@ -53,7 +52,6 @@
 				</select>
 	      	</div>
 	    </div>
-       <!-- ^fin elemento oculto -->
 	    <div class="row hidden" id="form-card-user">
 	    	<div class="center hidden" id="div-logo-amx">
 	    		<img src="img/cardAmerica.png" class="logo-card">
@@ -64,13 +62,30 @@
 			<form class="col s12">
 			  <div class="row">
 			    <div class="input-field col s12 m4 offset-m4">
-			      <input id="name-titular" type="text" class="validate" required>
+			      <input id="name-titular" 
+			      		 type="text" 
+			      		 class="validate"
+			      		 maxlength="15" 
+			      		 required>
 			      <label for="name-titular">Nombre del Titular</label>
 			    </div>
 			  </div>
 			  <div class="row">
-			    <div class="input-field col s12 m4 offset-m4">
-			      <input id="number-card" type="text" class="validate" required>
+			    <div class="input-field col s12 m4 offset-m4" id="input-card-amx">
+			      <input id="number-card-amx" 
+			      		 type="text"
+			      		 maxlength="16" 
+			      		 class="validate" 
+			      		 required>
+			      <label for="number-card">Número de la Tarjeta</label>
+			    </div>
+			    <!-- visa -->
+			    <div class="input-field col s12 m4 offset-m4 hidden" id="input-card-visa">
+			      <input id="number-card-visa" 
+			      		 type="text"
+			      		 maxlength="16" 
+			      		 class="validate" 
+			      		 required>
 			      <label for="number-card">Número de la Tarjeta</label>
 			    </div>
 			  </div>
