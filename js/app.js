@@ -6,10 +6,7 @@
 	
 	var amountNumber = $('#amount-number');
 	amountNumber.keydown(function(e) {
-		var inputNumber = amountNumber.val();
-		console.log(inputNumber);
-		var exRegNumber = /([0-9])/g;
-		if(!(exRegNumber.test(inputNumber))){
+		if (e.keyCode !== 8 && (e.keyCode < 48 || e.keyCode > 57)){
 			e.preventDefault();
 		};
 	});
