@@ -16,14 +16,16 @@
 	            <div class="card-image">
 	              <img id="img-profile">
 	            </div>
-	            <p class="center" id="user-name"></p>
+	            <p class="center label-name" id="user-name"></p>
 	            <div class="card-content">
           			<div class="row">
 				        <div class="input-field">
-				          <input id="amount-number" 
-				          		 type="text"
-				          		 placeholder="$0.00" 
-				          		 class="center">
+			        		<input id="amount-number" 
+			          		 type="text"
+			          		 placeholder="$0.00"
+			          		 class="center input-number"
+			          		 style="font-size: 34px"; 
+			          		 >
 				          <label for="amount-number">Monto a Pagar</label>
 				        </div>
     				</div>
@@ -31,15 +33,60 @@
 	            <div class="card-action center">
 	            	<button class="waves-effect waves-light btn">
 	            		<i class="material-icons left">arrow_forward</i>
-	            		Siguiente
+	            		Continuar
 	            	</button>
 	            </div>
 	          </div>
 	        </div>
-      </div>
+       </div>
+       <br>
+       <!-- elemento oculto -->
+       <div class="row" id="select-card">
+	      <h4 class="center">Asociar Tarjeta</h4>
+			<div class="input-field col s12 m4 offset-m4">
+				<select class="icons">
+					<option value="" disabled selected>Tipo de Tarjeta</option>
+					<option value="" data-icon="img/logoAmex.jpg" class="circle">American Express</option>
+					<option value="" data-icon="img/logoVisa.jpg" class="circle">Visa</option>
+				</select>
+	      	</div>
+	    </div>
+       <!-- ^fin elemento oculto -->
+	    <div class="row">
+			<form class="col s12">
+			  <div class="row">
+			    <div class="input-field col s12 m4 offset-m4">
+			      <input id="name-titular" type="text" class="validate">
+			      <label for="name-titular">Nombre del Titular</label>
+			    </div>
+			  </div>
+			  <div class="row">
+			    <div class="input-field col s12 m4 offset-m4">
+			      <input id="number-card" type="text" class="validate">
+			      <label for="number-card">Número de la Tarjeta</label>
+			    </div>
+			  </div>
+			  <div class="row">
+			    <div class="input-field col s6 m4 offset-m4">
+			      <input id="date-card" type="text" class="validate">
+			      <label for="date-card">MM/AA</label>
+			    </div>
+			    <div class="input-field col s6 m4 offset-m4">
+			      <input id="csc-card" type="text" class="validate">
+			      <label for="csc-card">CSC</label>
+			    </div>
+			  </div>
+			  <div class="row">
+			  	<div class="center col s12 m4 offset-m4">
+				  	<button class="waves-effect waves-light btn">
+		        		<i class="material-icons left">arrow_forward</i>
+		        		Continuar
+		            </button>
+	            </div>
+			  </div>
+			</form>
+		</div>
 	</div>
-
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>

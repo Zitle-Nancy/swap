@@ -2,15 +2,20 @@
 	function loadPage () {
 		getUserData();
         Materialize.updateTextFields();
+        $('.modal').modal();
+        $('#modal1').modal('open');
+        $('#modal1').modal('close');
+        $('select').material_select();
 	};
 	
 	var amountNumber = $('#amount-number');
-	amountNumber.keydown(function(e) {
+	amountNumber.keydown(validateNumber);
+
+	function validateNumber(e) {
 		if (e.keyCode !== 8 && (e.keyCode < 48 || e.keyCode > 57)){
 			e.preventDefault();
 		};
-	});
-
+	}
 	function getUserData() {
 		var urlPathName = $(location).attr('pathname');
 		var idUser = urlPathName.replace('/','');
