@@ -1,4 +1,11 @@
 (function() {
+	var urlPathName = $(location).attr('pathname');
+	var idUser = urlPathName.replace('/','');
+	var amountNumber = $('#amount-number');
+	var btnAmount = $('#btn-amount');
+	amountNumber.mask("$99.999.99");
+	amountNumber.keyup(validateNumber,disabledBtnAmount);
+	
 	function loadPage () {
 		getUserData();
         Materialize.updateTextFields();
@@ -7,18 +14,22 @@
         $('#modal1').modal('close');
         $('select').material_select();
 	};
-	
-	var amountNumber = $('#amount-number');
-	amountNumber.keydown(validateNumber);
-
+	function disabledBtnAmount() {
+		if (amountNumber.val().trim().length <= 0 || amountNumber.val() == '$') {
+			
+			btnAmount.attr('disabled',true);
+			
+		}else{
+			btnAmount.removeAttr('disabled');
+		}
+	};
 	function validateNumber(e) {
+		console.log(this.value);
 		if (e.keyCode !== 8 && (e.keyCode < 48 || e.keyCode > 57)){
 			e.preventDefault();
 		};
-	}
+	};
 	function getUserData() {
-		var urlPathName = $(location).attr('pathname');
-		var idUser = urlPathName.replace('/','');
 		var imgProfile = $('#img-profile');
 		var userName = $('#user-name');
 		$.ajax({
@@ -42,6 +53,11 @@
 				userName.text(name);
 			}, 
 			error: function( error ) {
+				swal(
+				  'Oops...',
+				  'Usuario incorrecto',
+				  'error'
+				)
 				console.error('error', arguments);
 			}
 		});
