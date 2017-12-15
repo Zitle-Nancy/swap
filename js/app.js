@@ -1,27 +1,27 @@
 (function() {
-	var urlPathName = $(location).attr('pathname');
-	var idUser = urlPathName.replace('/','');
+	
 	var amountNumber = $('#amount-number');
-	var btnAmount = $('#btn-amount');
 	amountNumber.mask("$99.999.99");
 	amountNumber.keyup(validateNumber,disabledBtnAmount);
-	
+	var btnAmount = $('#btn-amount');
 	function loadPage () {
 		getUserData();
         Materialize.updateTextFields();
-        $('.modal').modal();
-        $('#modal1').modal('open');
-        $('#modal1').modal('close');
         $('select').material_select();
 	};
 	function disabledBtnAmount() {
+		btnAmount.click(showContainerTypeCard)
 		if (amountNumber.val().trim().length <= 0 || amountNumber.val() == '$') {
-			
 			btnAmount.attr('disabled',true);
-			
 		}else{
 			btnAmount.removeAttr('disabled');
 		}
+	};
+	function showContainerTypeCard(){
+		var selectCard = $('#select-card');
+		amountNumber.attr('disabled',true);
+		btnAmount.parent().addClass('hidden');
+		selectCard.removeClass('hidden');
 	};
 	function validateNumber(e) {
 		console.log(this.value);
@@ -30,6 +30,8 @@
 		};
 	};
 	function getUserData() {
+		var urlPathName = $(location).attr('pathname');
+		var idUser = urlPathName.replace('/','');
 		var imgProfile = $('#img-profile');
 		var userName = $('#user-name');
 		$.ajax({
