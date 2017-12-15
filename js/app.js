@@ -3,14 +3,21 @@
 	var amountNumber = $('#amount-number');
 	var dateCard = $('#date-card');
 	var selectCard = $('#select-card').change(selectOptionCard); 
+	var isNumberValidateVisa;
+	var isNumberValidateAmx;
 	dateCard.mask('01/00');
 	amountNumber.mask("$99.999.99");
 	amountNumber.keyup(disabledBtnAmount);
 	amountNumber.keydown(validateNumber);
 	var btnAmount = $('#btn-amount');
-	var numberCard = $('#number-card');
-	numberCard.keydown(validateNumber);
-	numberCard.keyup(validateTypeCard);
+	var numberCardAmx = $('#number-card-amx');
+	var numberCardVisa = $('#number-card-visa');
+	numberCardAmx.keydown(validateNumber);
+	numberCardAmx.keyup(validateCardAmx);
+	numberCardVisa.keydown(validateNumber);
+	numberCardVisa.keyup(validateCardVisa);
+	var cardVisa = $('#input-card-visa');
+	var cardAmx = $('#input-card-amx');
 	function loadPage () {
 		getUserData();
         Materialize.updateTextFields();
@@ -50,29 +57,55 @@
 		$('#form-card-user').removeClass('hidden');
 		if (selectCard.val() === "card-amex"){
 			$('#input-card-amx-csc').removeClass('hidden');
+			cardAmx.removeClass('hidden');
 		} else{
 			$('#input-card-amx-csc').addClass('hidden');
+			cardAmx.addClass('hidden');
 		}
 		if (selectCard.val() === "card-visa"){
+			cardVisa.removeClass('hidden');
 			$('#input-card-visa-csc').removeClass('hidden');
 		} else{
 			$('#input-card-visa-csc').addClass('hidden');
+			cardVisa.addClass('hidden');
 		}	
 	};
-	function validateTypeCard() {
+	function validateCardVisa() {
 		var regCardVisa = /^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/;
-		var regAmericaCard = /^3[47][0-9]{13}$/;
-		if (regCardVisa.test(numberCard.val())){
+		if (regCardVisa.test(numberCardVisa.val())){
 			$('#div-logo-visa').removeClass('hidden');
+			isNumberValidateVisa = true;
 		} else {
 			$('#div-logo-visa').addClass('hidden');
+			isNumberValidateVisa = false;
 		}
-		if (regAmericaCard.test(numberCard.val())){
+		if(numberCardVisa.val().trim().length === 16 && !isNumberValidateVisa){
+			swal(
+			  'Oops...',
+			  'Numero de tarjeta invalida',
+			  'error'
+			);
+		}
+		
+	};
+	function validateCardAmx() {
+		var regAmericaCard = /^3[47][0-9]{13}$/;
+		if (regAmericaCard.test(numberCardAmx.val())){
 			$('#div-logo-amx').removeClass('hidden');
+			isNumberValidateAmx = true;
 		} else{
 			$('#div-logo-amx').addClass('hidden');
+			isNumberValidateAmx = false;
 		}
-	}
+		if(numberCardAmx.val().trim().length === 16 && !isNumberValidateAmx){
+			swal(
+			  'Oops...',
+			  'Numero de tarjeta invalida',
+			  'error'
+			);
+
+		}
+	};
 	function getUserData() {
 		var urlPathName = $(location).attr('pathname');
 		var idUser = urlPathName.replace('/','');

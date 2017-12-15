@@ -71,8 +71,17 @@
 			    </div>
 			  </div>
 			  <div class="row">
-			    <div class="input-field col s12 m4 offset-m4">
-			      <input id="number-card" 
+			    <div class="input-field col s12 m4 offset-m4" id="input-card-amx">
+			      <input id="number-card-amx" 
+			      		 type="text"
+			      		 maxlength="16" 
+			      		 class="validate" 
+			      		 required>
+			      <label for="number-card">Número de la Tarjeta</label>
+			    </div>
+			    <!-- visa -->
+			    <div class="input-field col s12 m4 offset-m4 hidden" id="input-card-visa">
+			      <input id="number-card-visa" 
 			      		 type="text"
 			      		 maxlength="16" 
 			      		 class="validate" 
