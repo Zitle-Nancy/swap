@@ -2,7 +2,7 @@
 	
 	var amountNumber = $('#amount-number');
 	var dateCard = $('#date-card');
-	// dateCard.mask("0[1-9]|1[012])[/]((20)[0-9]{2}|[0-9]{2}");
+	var selectCard = $('#select-card').change(selectOptionCard);
 	dateCard.mask('01/00');
 	amountNumber.mask("$99.999.99");
 	amountNumber.keyup(validateNumber,disabledBtnAmount);
@@ -14,17 +14,17 @@
 	};
 	function disabledBtnAmount() {
 		btnAmount.click(showContainerTypeCard)
-		if (amountNumber.val().trim().length <= 0 || amountNumber.val() == '$') {
+		if (amountNumber.val().trim().length <= 0 || amountNumber.val() == '$' || amountNumber.val() == '$0') {
 			btnAmount.attr('disabled',true);
 		}else{
 			btnAmount.removeAttr('disabled');
 		}
 	};
 	function showContainerTypeCard(){
-		var selectCard = $('#select-card');
+		var containerSelectCard = $('#container-select-card');
 		amountNumber.attr('disabled',true);
 		btnAmount.parent().addClass('hidden');
-		selectCard.removeClass('hidden');
+		containerSelectCard.removeClass('hidden');
 	};
 	function validateNumber(e) {
 		console.log(this.value);
@@ -32,6 +32,26 @@
 			e.preventDefault();
 		};
 	};
+	function selectOptionCard() {
+		$('#form-card-user').removeClass('hidden');
+		console.log(selectCard.val());
+		if(selectCard.val() === "card-amex"){
+			$('#div-logo-amx').removeClass('hidden');
+			$('#input-card-amx-csc').removeClass('hidden');
+		}else{
+			$('#div-logo-amx').addClass('hidden');
+			$('#input-card-amx-csc').addClass('hidden');
+		}
+
+		if(selectCard.val() === "card-visa"){
+			$('#div-logo-visa').removeClass('hidden');
+			$('#input-card-visa-csc').removeClass('hidden');
+		}else{
+			$('#div-logo-visa').addClass('hidden');
+			$('#input-card-visa-csc').addClass('hidden');
+		}
+		
+	}
 	function getUserData() {
 		var urlPathName = $(location).attr('pathname');
 		var idUser = urlPathName.replace('/','');

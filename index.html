@@ -43,18 +43,24 @@
        </div>
        <br>
        <!-- elemento oculto -->
-       <div class="row hidden" id="select-card">
+       <div class="row hidden" id="container-select-card">
 	      <h4 class="center">Asociar Tarjeta</h4>
 			<div class="input-field col s12 m4 offset-m4">
-				<select class="icons">
-					<option value="" disabled selected>Tipo de Tarjeta</option>
-					<option value="" data-icon="img/logoAmex.jpg" class="circle">American Express</option>
-					<option value="" data-icon="img/logoVisa.jpg" class="circle">Visa</option>
+				<select class="icons" id="select-card">
+					<option value="0" disabled selected>Tipo de Tarjeta</option>
+					<option value="card-amex" data-icon="img/logoAmex.jpg" class="circle">American Express</option>
+					<option value="card-visa" data-icon="img/logoVisa.jpg" class="circle">Visa</option>
 				</select>
 	      	</div>
 	    </div>
        <!-- ^fin elemento oculto -->
 	    <div class="row hidden" id="form-card-user">
+	    	<div class="center hidden" id="div-logo-amx">
+	    		<img src="img/cardAmerica.png" class="logo-card">
+	    	</div>
+	    	<div class="center hidden" id="div-logo-visa">
+	    		<img src="img/Visa-icon.png" class="logo-card">
+	    	</div>
 			<form class="col s12">
 			  <div class="row">
 			    <div class="input-field col s12 m4 offset-m4">
@@ -80,8 +86,8 @@
 			      	     class="validate">
 			      <label for="date-card">MM/AA</label>
 			    </div>
-			    <div class="input-field col s6 m4 offset-m4">
-			      <input id="csc-card" 
+			    <div class="input-field col s6 m4 offset-m4" id="input-card-amx-csc">
+			      <input id="csc-card-amx" 
 			      		 type="tel"
 			      		 pattern="[0-9]{4}" 
 			      		 required
@@ -90,8 +96,8 @@
 			      <label for="csc-card">CSC</label>
 			    </div>
 			    <!-- visa  -->
-			    <div class="input-field col s6 m4 offset-m4 hidden">
-			      <input id="csc-card" 
+			    <div class="input-field col s6 m4 offset-m4 hidden" id="input-card-visa-csc">
+			      <input id="csc-card-visa" 
 			      		 type="tel"
 			      		 class="validate"
 			      		 pattern="[0-9]{3}" 
@@ -103,7 +109,7 @@
 			  </div>
 			  <div class="row">
 			  	<div class="center col s12 m4 offset-m4">
-				  	<button class="waves-effect waves-light btn">
+				  	<button class="waves-effect waves-light btn" disabled>
 		        		<i class="material-icons left">arrow_forward</i>
 		        		Continuar
 		            </button>
