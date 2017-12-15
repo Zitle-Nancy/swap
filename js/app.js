@@ -1,15 +1,24 @@
 (function() {
-	
-	var urlPathName = $(location).attr('pathname');
-	var idUser = urlPathName.replace('/','');
-	var imgProfile = $('#img-profile');
-	var userName = $('#user-name');
-	var loadPage = function () {
-        Materialize.updateTextFields();
+	function loadPage () {
 		getUserData();
+        Materialize.updateTextFields();
 	};
+	
+	var amountNumber = $('#amount-number');
+	amountNumber.keydown(function(e) {
+		var inputNumber = amountNumber.val();
+		console.log(inputNumber);
+		var exRegNumber = /([0-9])/g;
+		if(!(exRegNumber.test(inputNumber))){
+			e.preventDefault();
+		};
+	});
 
-	var getUserData = function() {
+	function getUserData() {
+		var urlPathName = $(location).attr('pathname');
+		var idUser = urlPathName.replace('/','');
+		var imgProfile = $('#img-profile');
+		var userName = $('#user-name');
 		$.ajax({
 			type: "POST",
 			url: 'https://parseapi.back4app.com/functions/usuario',
@@ -25,7 +34,7 @@
 
 			}),
 			success: function( result ) {
-				console.log(result);
+				//console.log(result);
 				var name = result.result.firstName + " " + result.result.lastName;
 				imgProfile.attr('src',result.result.image);
 				userName.text(name);
