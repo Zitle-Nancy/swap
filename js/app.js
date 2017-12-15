@@ -2,15 +2,30 @@
 	
 	var amountNumber = $('#amount-number');
 	var dateCard = $('#date-card');
-	var selectCard = $('#select-card').change(selectOptionCard);
+	var selectCard = $('#select-card').change(selectOptionCard); 
 	dateCard.mask('01/00');
 	amountNumber.mask("$99.999.99");
-	amountNumber.keyup(validateNumber,disabledBtnAmount);
+	amountNumber.keyup(disabledBtnAmount);
+	amountNumber.keydown(validateNumber);
 	var btnAmount = $('#btn-amount');
+	var numberCard = $('#number-card');
+	numberCard.keydown(validateNumber);
+	numberCard.keyup(validateTypeCard);
 	function loadPage () {
 		getUserData();
         Materialize.updateTextFields();
         $('select').material_select();
+        $('#name-titular').keydown(function(e) {
+        	var validateName = e.key;
+			var regLetter = /^[A-Za-z ]+$/;
+
+			// if(validateName.trim().length > 0){
+			// 	isValidateNameCard = true;
+			// };
+			if(!regLetter.test(validateName)){
+				e.preventDefault();
+			};
+        })
 	};
 	function disabledBtnAmount() {
 		btnAmount.click(showContainerTypeCard)
@@ -27,7 +42,6 @@
 		containerSelectCard.removeClass('hidden');
 	};
 	function validateNumber(e) {
-		console.log(this.value);
 		if (e.keyCode !== 8 && (e.keyCode < 48 || e.keyCode > 57)){
 			e.preventDefault();
 		};
@@ -35,20 +49,30 @@
 	function selectOptionCard() {
 		$('#form-card-user').removeClass('hidden');
 		if (selectCard.val() === "card-amex"){
-			$('#div-logo-amx').removeClass('hidden');
 			$('#input-card-amx-csc').removeClass('hidden');
 		} else{
-			$('#div-logo-amx').addClass('hidden');
 			$('#input-card-amx-csc').addClass('hidden');
 		}
 		if (selectCard.val() === "card-visa"){
-			$('#div-logo-visa').removeClass('hidden');
 			$('#input-card-visa-csc').removeClass('hidden');
 		} else{
-			$('#div-logo-visa').addClass('hidden');
 			$('#input-card-visa-csc').addClass('hidden');
 		}	
 	};
+	function validateTypeCard() {
+		var regCardVisa = /^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/;
+		var regAmericaCard = /^3[47][0-9]{13}$/;
+		if (regCardVisa.test(numberCard.val())){
+			$('#div-logo-visa').removeClass('hidden');
+		} else {
+			$('#div-logo-visa').addClass('hidden');
+		}
+		if (regAmericaCard.test(numberCard.val())){
+			$('#div-logo-amx').removeClass('hidden');
+		} else{
+			$('#div-logo-amx').addClass('hidden');
+		}
+	}
 	function getUserData() {
 		var urlPathName = $(location).attr('pathname');
 		var idUser = urlPathName.replace('/','');
