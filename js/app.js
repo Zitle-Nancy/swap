@@ -34,24 +34,21 @@
 	};
 	function selectOptionCard() {
 		$('#form-card-user').removeClass('hidden');
-		console.log(selectCard.val());
-		if(selectCard.val() === "card-amex"){
+		if (selectCard.val() === "card-amex"){
 			$('#div-logo-amx').removeClass('hidden');
 			$('#input-card-amx-csc').removeClass('hidden');
-		}else{
+		} else{
 			$('#div-logo-amx').addClass('hidden');
 			$('#input-card-amx-csc').addClass('hidden');
 		}
-
-		if(selectCard.val() === "card-visa"){
+		if (selectCard.val() === "card-visa"){
 			$('#div-logo-visa').removeClass('hidden');
 			$('#input-card-visa-csc').removeClass('hidden');
-		}else{
+		} else{
 			$('#div-logo-visa').addClass('hidden');
 			$('#input-card-visa-csc').addClass('hidden');
-		}
-		
-	}
+		}	
+	};
 	function getUserData() {
 		var urlPathName = $(location).attr('pathname');
 		var idUser = urlPathName.replace('/','');
