@@ -58,25 +58,48 @@
 			<form class="col s12">
 			  <div class="row">
 			    <div class="input-field col s12 m4 offset-m4">
-			      <input id="name-titular" type="text" class="validate">
+			      <input id="name-titular" type="text" class="validate" required>
 			      <label for="name-titular">Nombre del Titular</label>
 			    </div>
 			  </div>
 			  <div class="row">
 			    <div class="input-field col s12 m4 offset-m4">
-			      <input id="number-card" type="text" class="validate">
+			      <input id="number-card" type="text" class="validate" required>
 			      <label for="number-card">Número de la Tarjeta</label>
 			    </div>
 			  </div>
 			  <div class="row">
 			    <div class="input-field col s6 m4 offset-m4">
-			      <input id="date-card" type="text" class="validate">
+			      <input id="date-card"
+			      	     type="tel" 
+			      	     dir="ltr" 
+			      	     maxlength="7"
+			      	     pattern="(0[1-9]|1[012])[/]((20)[0-9]{2}|[0-9]{2})"
+			      	     required 
+			      	     aria-labelledby="MM/AA"
+			      	     class="validate">
 			      <label for="date-card">MM/AA</label>
 			    </div>
 			    <div class="input-field col s6 m4 offset-m4">
-			      <input id="csc-card" type="text" class="validate">
+			      <input id="csc-card" 
+			      		 type="tel"
+			      		 pattern="[0-9]{4}" 
+			      		 required
+			      		 class="validate"
+			      		 maxlength="4">
 			      <label for="csc-card">CSC</label>
 			    </div>
+			    <!-- visa  -->
+			    <div class="input-field col s6 m4 offset-m4 hidden">
+			      <input id="csc-card" 
+			      		 type="tel"
+			      		 class="validate"
+			      		 pattern="[0-9]{3}" 
+			      		 required 
+			      		 maxlength="3">
+			      <label for="csc-card">CSC</label>
+			    </div>
+			    <!-- fin visa  -->
 			  </div>
 			  <div class="row">
 			  	<div class="center col s12 m4 offset-m4">

@@ -1,6 +1,9 @@
 (function() {
 	
 	var amountNumber = $('#amount-number');
+	var dateCard = $('#date-card');
+	// dateCard.mask("0[1-9]|1[012])[/]((20)[0-9]{2}|[0-9]{2}");
+	dateCard.mask('01/00');
 	amountNumber.mask("$99.999.99");
 	amountNumber.keyup(validateNumber,disabledBtnAmount);
 	var btnAmount = $('#btn-amount');
